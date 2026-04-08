@@ -2,7 +2,7 @@
 
 ---
 
-## 📌 1. Project Overview
+##  1. Project Overview
 
 Agriculture plays an important role in our daily lives, and understanding crop productivity can make a real difference.
 This project focuses on predicting crop yield using machine learning techniques based on historical agricultural data.
@@ -11,7 +11,7 @@ The main goal was to take raw data, clean and analyze it, and build models that 
 
 ---
 
-## 🎯 2. Objectives 🎀
+##  2. Objectives 🎀
 
 * Understand patterns in agricultural data
 * Clean and preprocess real-world datasets
@@ -21,7 +21,7 @@ The main goal was to take raw data, clean and analyze it, and build models that 
 
 ---
 
-## 🛠️ 3. Tech Stack 💻💗
+##  3. Tech Stack 💻💗
 
 * Python
 * Pandas & NumPy
@@ -30,7 +30,7 @@ The main goal was to take raw data, clean and analyze it, and build models that 
 
 ---
 
-## 🔍 4. Methodology 🌷
+##  4. Methodology 🌷
 
 ### Data Preprocessing
 
@@ -57,7 +57,7 @@ The main goal was to take raw data, clean and analyze it, and build models that 
 
 ---
 
-## 📊 5. Visualizations 📈💖
+##  5. Visualizations 📈💖
 
 * Heatmap showing feature correlations
 * Scatter plot (Actual vs Predicted values)
@@ -67,14 +67,14 @@ The main goal was to take raw data, clean and analyze it, and build models that 
 
 ---
 
-## 🧠 6. Results & Insights 💡🌸
+##  6. Results & Insights 💡🌸
 
 Both models performed well, but **Random Forest outperformed Linear Regression**.
 It was able to capture complex, non-linear relationships in the dataset, resulting in better prediction accuracy.
 
 ---
 
-## 📚 7. Learning Outcomes 🎓💗
+##  7. Learning Outcomes 🎓💗
 
 * Gained hands-on experience in data preprocessing
 * Improved understanding of machine learning models
@@ -83,13 +83,13 @@ It was able to capture complex, non-linear relationships in the dataset, resulti
 
 ---
 
-## 🙏 8. Acknowledgement 💐
+##  8. Acknowledgement 💐
 
 I would like to sincerely thank my teacher for their continuous support, guidance, and encouragement throughout this project. Their insights played an important role in improving both my understanding and execution of this work.
 
 ---
 
-## 🚀 9. Future Scope 🌟
+##  9. Future Scope 🌟
 
 * Include additional features like rainfall, temperature, and soil type
 * Experiment with advanced models such as XGBoost
@@ -97,6 +97,6 @@ I would like to sincerely thank my teacher for their continuous support, guidanc
 
 ---
 
-## ⭐ 10. Final Note 💕
+##  10. Final Note ⭐
 
 If you found this project interesting, feel free to star the repository and share your feedback!
