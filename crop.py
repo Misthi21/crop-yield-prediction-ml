@@ -2,14 +2,12 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
-
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, r2_score
 
-# Styling
 sns.set_theme(style="whitegrid", context="notebook")
 
 plt.rcParams.update({
@@ -18,59 +16,50 @@ plt.rcParams.update({
     "axes.edgecolor": "#dddddd"
 })
 
-# Load dataset
 df = pd.read_csv(r"C:\Users\MISTHI\Downloads\misthikatoch65_17754861315134325.csv")
 
-# Clean column names
 df.columns = df.columns.str.strip()
 
-# Rename columns
 df = df.rename(columns={
     "Yield (UOM:Kg/Ha(KilogramperHectare)), Scaling Factor:1": "yield(hec)",
     "Area (UOM:Ha(Hectare)), Scaling Factor:1000": "Area(hec)",
     "Crop Name": "Crop"
 })
 
-# Drop unnecessary columns
 df = df.drop(columns=[
     "Country",
     "Additional Info",
     "Area Percentage To All India (%) (UOM:%(Percentage)), Scaling Factor:1"
 ], errors='ignore')
 
-# Fix Year column
 df["Year"] = df["Year"].astype(str).str.extract(r'(\d{4})')
 df = df.dropna(subset=["Year"])
 df["Year"] = df["Year"].astype(int)
 
-# Remove missing values
 df = df.dropna()
 
-# Remove outliers
 df = df[df["yield(hec)"] < df["yield(hec)"].quantile(0.97)]
 
-# Encode categorical variables
 le = LabelEncoder()
 df["State"] = le.fit_transform(df["State"])
 df["Crop"] = le.fit_transform(df["Crop"])
 
-# Heatmap
+
 plt.figure(figsize=(10,6))
 sns.heatmap(df.corr(), annot=True, cmap="flare")
 plt.title("Feature Correlation Heatmap", weight="bold")
 plt.tight_layout(rect=[0,0,1,0.95])
 plt.show()
 
-# Features & target
 X = df[["State", "Crop", "Year", "Area(hec)"]]
 y = df["yield(hec)"]
 
-# Split data
+
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42
 )
 
-# Models
+
 lr = LinearRegression()
 rf = RandomForestRegressor(n_estimators=100, max_depth=10, random_state=42)
 
@@ -80,7 +69,7 @@ rf.fit(X_train, y_train)
 y_pred_lr = lr.predict(X_test)
 y_pred_rf = rf.predict(X_test)
 
-# Evaluation
+
 print("Linear Regression")
 print("MAE:", mean_absolute_error(y_test, y_pred_lr))
 print("R2:", r2_score(y_test, y_pred_lr))
@@ -90,9 +79,6 @@ print("MAE:", mean_absolute_error(y_test, y_pred_rf))
 print("R2:", r2_score(y_test, y_pred_rf))
 
 
-# -----------------------------
-# GRAPH 1: Scatter
-# -----------------------------
 plt.figure(figsize=(6,4))
 
 plt.scatter(y_test, y_pred_rf, color="#ff8fab", edgecolor="white", s=70)
@@ -118,10 +104,6 @@ plt.grid(True, linestyle='--', color='grey', alpha=0.6)
 plt.tight_layout(rect=[0,0,1,0.95])
 plt.show()
 
-
-# -----------------------------
-# GRAPH 2: Bar
-# -----------------------------
 plt.figure(figsize=(8,4))
 
 top_crops = df.groupby("Crop")["yield(hec)"].mean().sort_values(ascending=False).head(10)
@@ -151,10 +133,6 @@ plt.grid(axis='y', linestyle='--', color='grey', alpha=0.6)
 plt.tight_layout(rect=[0,0,1,0.95])
 plt.show()
 
-
-# -----------------------------
-# GRAPH 3: Line
-# -----------------------------
 plt.figure(figsize=(7,4))
 
 yearly = df.groupby("Year")["yield(hec)"].mean().reset_index()
@@ -182,10 +160,6 @@ plt.grid(True, linestyle='--', color='grey', alpha=0.6)
 plt.tight_layout(rect=[0,0,1,0.95])
 plt.show()
 
-
-# -----------------------------
-# GRAPH 4: Pie
-# -----------------------------
 plt.figure(figsize=(6,6))
 
 dist = df["Crop"].value_counts().head(5)
